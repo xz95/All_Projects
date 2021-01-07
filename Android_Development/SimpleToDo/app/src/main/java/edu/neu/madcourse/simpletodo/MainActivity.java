@@ -1,6 +1,7 @@
 package edu.neu.madcourse.simpletodo;
 
 import android.content.ClipData;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -20,6 +21,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+
+    public static final String KEY_TASK_TEXT = "task_text";
+    public static final String KEY_TASK_POSITION = "task_position";
+    public static final int EDIT_ACTIVITY_CODE = 20;
 
     List<String> items;
     Button btnAdd;
@@ -55,6 +60,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClicked(int position) {
                 Log.d("MainActivity", "Single click at position " + position );
+                // create the activity
+                Intent i = new Intent(MainActivity.this, EditActivity.class);
+                // pass the data being edited
+                i.putExtra(KEY_TASK_TEXT, items.get(position));
+                i.putExtra(KEY_TASK_POSITION, position);
+
+                // display the activity
+                startActivityForResult(i, EDIT_ACTIVITY_CODE);
+
             }
         };
         this.itemsAdapter = new ItemsAdapter(items, onLongClickListener, onClickListener);
