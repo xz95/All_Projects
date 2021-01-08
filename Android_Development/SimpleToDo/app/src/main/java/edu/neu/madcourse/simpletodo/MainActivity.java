@@ -2,6 +2,7 @@ package edu.neu.madcourse.simpletodo;
 
 import android.content.ClipData;
 import android.content.Intent;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -86,6 +87,24 @@ public class MainActivity extends AppCompatActivity {
                 saveItems();
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK && requestCode == EDIT_ACTIVITY_CODE) {
+            String itemText = data.getStringExtra(KEY_TASK_TEXT);
+            System.out.println(itemText);
+            int position = data.getExtras().getInt(KEY_TASK_POSITION);
+
+            items.set(position, itemText);
+            itemsAdapter.notifyItemChanged(position);
+
+            Toast.makeText(getApplicationContext(), "Item updated!", Toast.LENGTH_SHORT).show();
+            saveItems();
+        } else {
+            Log.w("MainActivity", "Unknown call to onActivityResult");
+        }
     }
 
     private File getDataFile() {
