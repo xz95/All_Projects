@@ -27,6 +27,7 @@ public class DetailActivity extends YouTubeBaseActivity {
     private static final String YOUTUBE_API_KEY = "AIzaSyDQORpJa7ci2PgeWikmPVInONiXvxd4FzY";
     public static final String VIDEOS_URL = "https://api.themoviedb.org/3/movie/%d/videos?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed";
 
+
     TextView tvTitle;
     TextView tvOverview;
     TextView tvReleaseDate;
@@ -38,6 +39,7 @@ public class DetailActivity extends YouTubeBaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
+
 
         tvTitle = findViewById(R.id.tvTitle);
         tvOverview = findViewById(R.id.tvOverview);

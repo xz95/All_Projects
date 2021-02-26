@@ -50,4 +50,13 @@
         android:textColor="@color/lightGray"
         android:transitionName="Shared_overview"
         tools:text="Wonder Woman comes into conflict with the Soviet Union during the Cold War in the 1980s and finds a formidable foe by the name of the Cheetah." />
+
+    <ImageView
+        android:id="@+id/ivPlay"
+        android:layout_width="82dp"
+        android:layout_height="60dp"
+        android:layout_alignParentStart="true"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="20dp"
+        app:srcCompat="@drawable/ic_baseline_play_circle_outline_24" />
 </RelativeLayout>

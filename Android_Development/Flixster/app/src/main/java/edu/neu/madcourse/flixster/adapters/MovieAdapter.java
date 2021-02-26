@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.load.resource.bitmap.FitCenter;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.Target;
@@ -67,6 +68,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{
         TextView tvTitle;
         TextView tvOverview;
         ImageView ivPoster;
+        ImageView ivPlay;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -74,7 +76,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{
             tvOverview = itemView.findViewById(R.id.tvOverview);
             ivPoster = itemView.findViewById(R.id.ivPoster);
             container = itemView.findViewById(R.id.container);
-
+            ivPlay = itemView.findViewById(R.id.ivPlay);
 
         }
 
@@ -88,13 +90,16 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{
                 imageUrl = movie.getPosterPath();
             }
 
-            int radius = 30; // corner radius, higher value = more rounded
-            int margin = 0; // crop margin, set to 0 for corners with no crop
+//            int radius = 30; // corner radius, higher value = more rounded
+//            int margin = 0; // crop margin, set to 0 for corners with no crop
             Glide.with(context)
                     .load(imageUrl)
-                    .transform(new RoundedCorners(radius))
-                    .override(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL)
+                    .transform(new FitCenter(), new RoundedCornersTransformation(10, 0))
                     .into(ivPoster);
+
+            if (movie.getRating() <= 5.0) {
+                ivPlay.setVisibility(View.INVISIBLE);
+            }
             // 1. register click listener on the whole row
             // 2. Navigate to a new activity
             container.setOnClickListener(new View.OnClickListener() {
