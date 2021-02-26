@@ -28,7 +28,8 @@
         android:text="TextView"
         android:textColor="@color/white"
         android:textSize="30sp"
-        tools:text="Movie Title" />
+        tools:text="Movie Title"
+        android:transitionName="Shared_movie"/>
 
     <TextView
         android:id="@+id/tvOverview"
@@ -44,5 +45,6 @@
         android:maxLines="5"
         android:text="TextView"
         android:textColor="@color/lightGray"
+        android:transitionName="Shared_overview"
         tools:text="Wonder Woman comes into conflict with the Soviet Union during the Cold War in the 1980s and finds a formidable foe by the name of the Cheetah." />
 </RelativeLayout>
