@@ -27,6 +27,11 @@ Here's a walkthrough of implemented user stories:
 
 <img src="https://github.com/xz95/All_Projects/blob/main/Android_Development/Flixster/Flixster2.gif" title='Video Walkthrough' width='250' alt='Video Walkthrough'><br>
 
+Update GIF: Allow video posts to be played in full screen using the YouTubePlayerView.
+
+<img src="https://github.com/xz95/All_Projects/blob/main/Android_Development/Flixster/Flixster2_fullScreen.gif" title='Video Walkthrough' width='250' alt='Video Walkthrough'><br>
+
+
 ### Notes
 Hours spent: 10 hrs
 
