@@ -49,8 +49,16 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
     // pass in the context and list of tweets
 
 
+    public void clear() {
+        tweets.clear();
+        notifyDataSetChanged();
+    }
 
-    // Bind values based on the position of the element
+    // Add a list of items -- change to type used
+    public void addAll(List<Tweet> tweetList) {
+        tweets.addAll(tweetList);
+        notifyDataSetChanged();
+    }
 
     // Define a viewHolder
         public class ViewHolder extends RecyclerView.ViewHolder {
