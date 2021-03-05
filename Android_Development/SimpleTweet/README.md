@@ -33,7 +33,7 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-<img src='https://github.com/xz95/All_Projects/tree/main/Android_Development/SimpleTweet/tweets1.gif' title='Video Walkthrough' width='300' alt='Video Walkthrough' />
+<img src="https://github.com/xz95/All_Projects/blob/main/Android_Development/SimpleTweet/tweets1.gif" title='Video Walkthrough' width='300' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
