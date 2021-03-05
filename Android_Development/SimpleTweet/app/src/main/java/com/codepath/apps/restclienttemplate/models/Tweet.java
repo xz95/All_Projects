@@ -2,6 +2,8 @@ package com.codepath.apps.restclienttemplate.models;
 
 import androidx.annotation.NonNull;
 
+import com.codepath.apps.restclienttemplate.TimeFormatter;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -33,5 +35,9 @@ public class Tweet {
             tweets.add(fromJson(jsonArray.getJSONObject(i)));
         }
         return tweets;
+    }
+
+    public static String getFormattedTimeStamp(String timestamp){
+        return TimeFormatter.getTimeDifference(timestamp);
     }
 }
