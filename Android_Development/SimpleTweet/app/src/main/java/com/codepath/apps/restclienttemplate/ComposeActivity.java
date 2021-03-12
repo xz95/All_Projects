@@ -1,9 +1,11 @@
 package com.codepath.apps.restclienttemplate;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Parcel;
 import android.text.Editable;
@@ -32,6 +34,7 @@ public class ComposeActivity extends AppCompatActivity {
     EditText etCompose;
     Button btnTweet;
     TextView tvCounter;
+    ActionBar actionBar;
 
     TwitterClient client;
 
@@ -45,6 +48,12 @@ public class ComposeActivity extends AppCompatActivity {
         etCompose = findViewById(R.id.etCompose);
         btnTweet = findViewById(R.id.btnTweet);
         tvCounter = findViewById(R.id.tvCounter);
+
+        actionBar = getSupportActionBar();
+        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#08a0e9")));
+        actionBar.setDisplayShowHomeEnabled(true);
+        actionBar.setLogo(R.drawable.ic_action_name);
+        actionBar.setDisplayUseLogoEnabled(true);
 
         etCompose.addTextChangedListener(new TextWatcher() {
             @Override
