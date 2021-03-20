@@ -26,6 +26,8 @@ The following **additional** features are implemented:
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
+
+
 <img src="https://github.com/xz95/All_Projects/blob/main/Android_Development/MyInstagram/MyInstagram1.gif" title='Video Walkthrough' width='350' alt='Video Walkthrough' />
 
 
