@@ -90,7 +90,7 @@ def depthFirstSearch(problem):
     """util.raiseNotDefined()"""
 
     dfsStack = util.Stack()
-    visited = []
+    visited = set()
 
     dfsStack.push((problem.getStartState(), []))
 
@@ -100,25 +100,70 @@ def depthFirstSearch(problem):
         path = nextStep[1]
 
         if coordinate not in visited:
-            visited.append(coordinate)
+            visited.add(coordinate)
 
             if problem.isGoalState(coordinate):
                 return path
             else:
                 # e.g. successors[((10, 1), 'East', 1), ((8, 1), 'West', 1)]
                 for succCoord, succDir, succCost in problem.getSuccessors(coordinate):
-                        dfsStack.push((succCoord, path + [succDir]))
+                    dfsStack.push((succCoord, path + [succDir]))
     return path
 
 def breadthFirstSearch(problem):
     """Search the shallowest nodes in the search tree first."""
     "*** YOUR CODE HERE ***"
-    util.raiseNotDefined()
+    bfsQueue = util.Queue()
+    visited = set()
+
+    bfsQueue.push((problem.getStartState(), []))
+
+    while not bfsQueue.isEmpty():
+        nextStep = bfsQueue.pop()
+        coordinate = nextStep[0]
+        path = nextStep[1]
+
+        if coordinate not in visited:
+            visited.add(coordinate)
+
+            if problem.isGoalState(coordinate):
+                return path
+            else:
+                # e.g. successors[((10, 1), 'East', 1), ((8, 1), 'West', 1)]
+                for succCoord, succDir, succCost in problem.getSuccessors(coordinate):
+                    bfsQueue.push((succCoord, path + [succDir]))
+    return path
 
 def uniformCostSearch(problem):
     """Search the node of least total cost first."""
     "*** YOUR CODE HERE ***"
-    util.raiseNotDefined()
+    ucs = util.PriorityQueue()
+    # visited = {curCoordinate: cost}
+    visited = {}
+
+    startState = problem.getStartState()
+    startNode = (startState, [], 0)
+    ucs.push(startNode, 0)
+
+    while not ucs.isEmpty():
+        nextStep = ucs.pop()
+        coordinate = nextStep[0]
+        path = nextStep[1]
+        cost = nextStep[2]
+
+        if (coordinate not in visited) or (cost < visited[coordinate]):
+            visited[coordinate] = cost
+
+            if problem.isGoalState(coordinate):
+                return path
+            else:
+                # e.g. successors[((10, 1), 'East', 1), ((8, 1), 'West', 1)]
+                for succCoord, succDir, succCost in problem.getSuccessors(coordinate):
+                    newPath = path + [succDir]
+                    newCost = cost + succCost
+                    newCoor = (succCoord, newPath, newCost)
+                    ucs.update(newCoor, newCost)
+    return path
 
 def nullHeuristic(state, problem=None):
     """
@@ -130,7 +175,42 @@ def nullHeuristic(state, problem=None):
 def aStarSearch(problem, heuristic=nullHeuristic):
     """Search the node that has the lowest combined cost and heuristic first."""
     "*** YOUR CODE HERE ***"
-    util.raiseNotDefined()
+    aStar = util.PriorityQueue()
+    visited = []
+
+    startState = problem.getStartState()
+    startNode = (startState, [], 0)
+    aStar.push(startNode, 0)
+
+    while not aStar.isEmpty():
+        nextStep = aStar.pop()
+        coordinate = nextStep[0]
+        path = nextStep[1]
+        cost = nextStep[2]
+
+
+        visited.append((coordinate, cost))
+
+        if problem.isGoalState(coordinate):
+            return path
+        else:
+            # e.g. successors[((10, 1), 'East', 1), ((8, 1), 'West', 1)]
+            for succCoord, succDir, succCost in problem.getSuccessors(coordinate):
+                newPath = path + [succDir]
+                newCost = problem.getCostOfActions(newPath)
+                newCoor = (succCoord, newPath, newCost)
+
+                wasVisited = False
+
+                for i in visited:
+                    visitedCoor, visitedCost = i
+                    if (succCoord == visitedCoor) and (newCost >= visitedCost):
+                        wasVisited = True
+
+                if not wasVisited:
+                    aStar.update(newCoor, newCost + heuristic(succCoord, problem))
+                    visited.append((succCoord, newCost))
+    return path
 
 
 # Abbreviations
